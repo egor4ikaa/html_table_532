@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            padding: 20px;
+            transition: background-color 0.5s ease;
+        }
+
+        input{
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            color: rgb(207, 196, 97);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            min-width: 120px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        button{
+            padding: 10px 25px;
+            border: none;
+            border-radius: 50px;
+            color: rgb(207, 196, 97);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            min-width: 120px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        p{
+            text-align: justify;
+        }
+        #text1 { border-left-color: #e74c3c; background-color: #fef6f6; }
+        #text2 { border-left-color: #2ecc71; background-color: #f6fef9; }
+        #text3 { border-left-color: #f39c12; background-color: #fffcf5; }
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 600px;
+            padding: auto;
+            margin: auto;
+        }
+
+        .section:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        input:hover{
+            background-color: rgb(0, 0, 0);
+        }
+        #image{
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 20px auto;
+        }
+        button:hover{
+            background-color: rgb(0, 0, 0);
+        }
+        @media (max-width: 768px) {
+            .button {
+                flex-direction: column;
+                align-items: center;
+            }
+            .input {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="section">
+        <input id="hi" type="button" value="Приветствие"></button>
+        <button id="font">Шрифт</button>
+        <button id="background">Фон</button>
+        <button id="font-size">Размер</button>
+        <p id="text1">JavaScript — мультипарадигменный язык программирования. Поддерживает объектно-ориентированный, императивный и функциональный стили. Является реализацией спецификации ECMAScript (стандарт ECMA-262[2]).</p>
+        <p id="text2">JavaScript обычно используется как встраиваемый язык для программного доступа к объектам приложений. Наиболее широкое применение находит в браузерах как язык сценариев для придания интерактивности веб-страницам[8].</p>
+        <p id="text3">Основные архитектурные черты:
+            динамическая типизация,
+            слабая типизация,
+            автоматическое управление памятью,
+            прототипное программирование,
+            функции как объекты первого класса.</p>
+    </section>
+    <img id="image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/960px-Unofficial_JavaScript_logo_2.svg.png?20141107110902" alt="js">
+
+    <script>
+        document.getElementById('hi').addEventListener('click', function() {
+            const userName = prompt('Как вас зовут?');
+            if (userName && userName.trim() !== '') {
+                alert(`Приветствую тебя, ${userName}!`);
+            } else {
+                alert(`Приветствую тебя, друг!`);
+            }
+        });
+
+        document.getElementById('font').addEventListener('click', function() {
+            const paragraphs = [document.getElementById('text1'),
+                              document.getElementById('text2'),
+                              document.getElementById('text3')];
+            paragraphs.forEach(paragraph => {
+                let currentSize = parseFloat(window.getComputedStyle(paragraph).fontSize) || 16;
+
+                if (currentSize < 24) {
+                    paragraph.style.fontSize = (currentSize + 2) + 'px';
+                } else {
+                    paragraph.style.fontSize = '16px';
+                }
+            });
+        });
+
+        document.getElementById('background').addEventListener('click', function() {
+            document.body.style.background = '#fad0c4' //розовый
+
+            setTimeout(() => {
+                document.body.style.background = '#fff' //белый
+            }, 5000);
+        });
+
+        document.getElementById('font-size').addEventListener('click', function() {
+            const img = document.getElementById('image');
+            let currentWidth = img.width;
+
+            img.width = currentWidth + 50;
+            img.height = img.width;
+
+            if (img.width > 600) {
+                img.width = 100;
+                img.height = 100;
+            }
+        });
+
+    </script>
+</body>
+</html>
